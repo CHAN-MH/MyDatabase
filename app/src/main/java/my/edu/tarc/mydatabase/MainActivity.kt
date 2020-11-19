@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         //Creating data for room4
         roomNo  = "R04"
         noOfPax  = 4
-        status  = true
+        status  = false
         myRef = database.getReference("Room").child("Room4")
         val room4 = Room()
         room4.roomNo = roomNo
