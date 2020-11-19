@@ -12,20 +12,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
        //Connect firebase to personal database
-        var database = FirebaseDatabase.getInstance("https://solenoid-lock-f65e8.firebaseio.com")
+        var database = FirebaseDatabase.getInstance()
         var myRef: DatabaseReference = database.getReference("Room").child("Room1")
-
-        //specially writing to Room1 for the sanitizer :)
-        /*In general case, the sanitizer system will have 100 drops or even more, due to presentation we will
-        * be showing 10 drops in the sanitizer bottle and 3 drops per room */
-        var sanitizerLeft: Int = 10
-        var sanitizer: DatabaseReference = database.getReference("Room").child("Room1").child("SanitizerLeft")
-        sanitizer.setValue(sanitizerLeft)
 
         //Creating data for room1
         var roomNo : String = "R01"
         var noOfPax : Int = 2
-        var status : Boolean = false
+        var status : Boolean = true
         var code: String ="000000"
         //true = available, false = occupied
         val room1 = Room()
@@ -34,6 +27,13 @@ class MainActivity : AppCompatActivity() {
         room1.isStatus = status
         room1.code = code
         myRef.setValue(room1)
+
+        //specially writing to Room1 for the sanitizer :)
+        /*In general case, the sanitizer system will have 100 drops or even more, due to presentation we will
+        * be showing 10 drops in the sanitizer bottle and 3 drops per room */
+        var sanitizerLeft: Int = 10
+        var sanitizer: DatabaseReference = database.getReference("Room").child("Room1").child("SanitizerLeft")
+        sanitizer.setValue(sanitizerLeft)
 
         //Creating data for room2
         roomNo  = "R02"
