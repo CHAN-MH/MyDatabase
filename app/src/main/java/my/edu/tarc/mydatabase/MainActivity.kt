@@ -32,8 +32,10 @@ class MainActivity : AppCompatActivity() {
         /*In general case, the sanitizer system will have 100 drops or even more, due to presentation we will
         * be showing 10 drops in the sanitizer bottle and 3 drops per room */
         var sanitizerLeft: Int = 10
-        var sanitizer: DatabaseReference = database.getReference("Room").child("Room1").child("SanitizerLeft")
+        var sanitizer: DatabaseReference = database.getReference("Room").child("Room1").child("sanitizerLeft")
+        var sanitizerUsed: DatabaseReference = database.getReference("Room").child("Room1").child("sanitizerUsed")
         sanitizer.setValue(sanitizerLeft)
+        sanitizerUsed.setValue(0)
 
         //Creating data for room2
         roomNo  = "R02"
