@@ -7,63 +7,68 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
-    //Global variable
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //connect to personal database
-        auth = FirebaseAuth.getInstance()
+       //Connect firebase to personal database
+        var database = FirebaseDatabase.getInstance("https://solenoid-lock-f65e8.firebaseio.com")
+        var myRef: DatabaseReference = database.getReference("Room").child("Room1")
+
+        //specially writing to Room1 for the sanitizer :)
+        /*In general case, the sanitizer system will have 100 drops or even more, due to presentation we will
+        * be showing 10 drops in the sanitizer bottle and 3 drops per room */
+        var sanitizerLeft: Int = 10
+        var sanitizer: DatabaseReference = database.getReference("Room").child("Room1").child("SanitizerLeft")
+        sanitizer.setValue(sanitizerLeft)
 
         //Creating data for room1
         var roomNo : String = "R01"
         var noOfPax : Int = 2
-        var status : Boolean = true
+        var status : Boolean = false
+        var code: String ="000000"
         //true = available, false = occupied
-        var database = FirebaseDatabase.getInstance()
-        var myRef: DatabaseReference = database.getReference("Room").child("Room1")
         val room1 = Room()
-        room1.setRoomNo(roomNo)
-        room1.setNoOfPax(noOfPax)
-        room1.setStatus(status)
+        room1.roomNo = roomNo
+        room1.noOfPax = noOfPax
+        room1.isStatus = status
+        room1.code = code
         myRef.setValue(room1)
 
         //Creating data for room2
         roomNo  = "R02"
         noOfPax  = 2
         status  = true
-        database = FirebaseDatabase.getInstance()
         myRef = database.getReference("Room").child("Room2")
         val room2 = Room()
-        room2.setRoomNo(roomNo)
-        room2.setNoOfPax(noOfPax)
-        room2.setStatus(status)
+        room2.roomNo = roomNo
+        room2.noOfPax = noOfPax
+        room2.isStatus = status
+        room2.code = code
         myRef.setValue(room2);
 
         //Creating data for room3
         roomNo  = "R03"
         noOfPax  = 4
         status  = true
-        database = FirebaseDatabase.getInstance()
         myRef = database.getReference("Room").child("Room3")
         val room3 = Room()
-        room3.setRoomNo(roomNo)
-        room3.setNoOfPax(noOfPax)
-        room3.setStatus(status)
+        room3.roomNo = roomNo
+        room3.noOfPax = noOfPax
+        room3.isStatus = status
+        room3.code = code
         myRef.setValue(room3);
 
         //Creating data for room4
         roomNo  = "R04"
         noOfPax  = 4
         status  = true
-        database = FirebaseDatabase.getInstance()
         myRef = database.getReference("Room").child("Room4")
         val room4 = Room()
-        room4.setRoomNo(roomNo)
-        room4.setNoOfPax(noOfPax)
-        room4.setStatus(status)
+        room4.roomNo = roomNo
+        room4.noOfPax = noOfPax
+        room4.isStatus = status
+        room4.code = code
         myRef.setValue(room4);
     }
 }
