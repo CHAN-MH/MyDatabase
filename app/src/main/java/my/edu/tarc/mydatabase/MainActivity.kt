@@ -11,15 +11,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-       //Connect firebase to personal database
+        //Connect firebase to personal database
         var database = FirebaseDatabase.getInstance()
         var myRef: DatabaseReference = database.getReference("Room").child("Room1")
+        var lcdRef: DatabaseReference =
+            database.getReference("bait2123-202010-03").child("PI_03_CONTROL")
 
         //Creating data for room1
-        var roomNo : String = "R01"
-        var noOfPax : Int = 2
-        var status : Boolean = true
-        var code: String ="000000"
+        var roomNo: String = "R01"
+        var noOfPax: Int = 2
+        var status: Boolean = true
+        var code: String = "000000"
         //true = available, false = occupied
         val room1 = Room()
         room1.roomNo = roomNo
@@ -32,15 +34,17 @@ class MainActivity : AppCompatActivity() {
         /*In general case, the sanitizer system will have 100 drops or even more, due to presentation we will
         * be showing 10 drops in the sanitizer bottle and 3 drops per room */
         var sanitizerLeft: Int = 10
-        var sanitizer: DatabaseReference = database.getReference("Room").child("Room1").child("sanitizerLeft")
-        var sanitizerUsed: DatabaseReference = database.getReference("Room").child("Room1").child("sanitizerUsed")
+        var sanitizer: DatabaseReference =
+            database.getReference("Room").child("Room1").child("sanitizerLeft")
+        var sanitizerUsed: DatabaseReference =
+            database.getReference("Room").child("Room1").child("sanitizerUsed")
         sanitizer.setValue(sanitizerLeft)
         sanitizerUsed.setValue(0)
 
         //Creating data for room2
-        roomNo  = "R02"
-        noOfPax  = 2
-        status  = true
+        roomNo = "R02"
+        noOfPax = 2
+        status = true
         myRef = database.getReference("Room").child("Room2")
         val room2 = Room()
         room2.roomNo = roomNo
@@ -50,9 +54,9 @@ class MainActivity : AppCompatActivity() {
         myRef.setValue(room2);
 
         //Creating data for room3
-        roomNo  = "R03"
-        noOfPax  = 4
-        status  = true
+        roomNo = "R03"
+        noOfPax = 4
+        status = true
         myRef = database.getReference("Room").child("Room3")
         val room3 = Room()
         room3.roomNo = roomNo
@@ -62,9 +66,9 @@ class MainActivity : AppCompatActivity() {
         myRef.setValue(room3);
 
         //Creating data for room4
-        roomNo  = "R04"
-        noOfPax  = 4
-        status  = false
+        roomNo = "R04"
+        noOfPax = 4
+        status = false
         myRef = database.getReference("Room").child("Room4")
         val room4 = Room()
         room4.roomNo = roomNo
@@ -72,5 +76,19 @@ class MainActivity : AppCompatActivity() {
         room4.isStatus = status
         room4.code = code
         myRef.setValue(room4);
+
+        //reseting the data in PL-03-Control
+
+        var lcdscr = ""
+        var lcdtxt = ""
+        var lcdbkR = ""
+        var lcdbkG = ""
+        var lcdbkB = ""
+
+        lcdRef.child("lcdscr").setValue(lcdscr)
+        lcdRef.child("lcdtxt").setValue(lcdtxt)
+        lcdRef.child("lcdbkR").setValue(lcdbkR)
+        lcdRef.child("lcdbkG").setValue(lcdbkG)
+        lcdRef.child("lcdbkB").setValue(lcdbkB)
     }
 }
