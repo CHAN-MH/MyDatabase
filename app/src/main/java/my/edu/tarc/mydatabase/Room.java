@@ -40,11 +40,5 @@ public class Room {
 
     public Room() {
     }
-/*
-    var roomList: List<Room>
-    //read from firebase with for loop (reading 1 by 1)
-    val room = Room(id, status)
-    roomList.add(room)
-*/
-    //array
+
 }

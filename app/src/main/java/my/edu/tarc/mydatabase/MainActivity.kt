@@ -12,10 +12,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //Connect firebase to personal database
-        var database = FirebaseDatabase.getInstance()
-        var myRef: DatabaseReference = database.getReference("Room").child("Room1")
-        var lcdRef: DatabaseReference =
-            database.getReference("bait2123-202010-03").child("PI_03_CONTROL")
+        var database2 = FirebaseDatabase.getInstance()
+        var myRef: DatabaseReference = database2.getReference("Room").child("Room1")
+        var lcdRef: DatabaseReference = database2.getReference("bait2123-202010-03").child("PI_03_CONTROL")
+
+        //var database1 = FirebaseDatabase.getInstance("https://bait2123-202010-03.firebaseio.com/")
+        //var comRef: DatabaseReference = database1.getReference("bait2123-202010-03").child("Room")
+
+        //test can write to common resources anot
+        //var test: String = "test"
+        //comRef.setValue(test)
+
+        //Creating User 1
+        var userRef: DatabaseReference = database2.getReference("UserProfile").child("User1")
+        var email : String = "halo@gmail.com"
+        var password : String = "123123"
+        val user1 = User()
+        user1.email = email
+        user1.password = password
+        userRef.setValue(user1)
 
         //Creating data for room1
         var roomNo: String = "R01"
@@ -35,9 +50,9 @@ class MainActivity : AppCompatActivity() {
         * be showing 10 drops in the sanitizer bottle and 3 drops per room */
         var sanitizerLeft: Int = 10
         var sanitizer: DatabaseReference =
-            database.getReference("Room").child("Room1").child("sanitizerLeft")
+            database2.getReference("Room").child("Room1").child("sanitizerLeft")
         var sanitizerUsed: DatabaseReference =
-            database.getReference("Room").child("Room1").child("sanitizerUsed")
+            database2.getReference("Room").child("Room1").child("sanitizerUsed")
         sanitizer.setValue(sanitizerLeft)
         sanitizerUsed.setValue(0)
 
@@ -45,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         roomNo = "R02"
         noOfPax = 2
         status = true
-        myRef = database.getReference("Room").child("Room2")
+        myRef = database2.getReference("Room").child("Room2")
         val room2 = Room()
         room2.roomNo = roomNo
         room2.noOfPax = noOfPax
@@ -57,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         roomNo = "R03"
         noOfPax = 4
         status = true
-        myRef = database.getReference("Room").child("Room3")
+        myRef = database2.getReference("Room").child("Room3")
         val room3 = Room()
         room3.roomNo = roomNo
         room3.noOfPax = noOfPax
@@ -69,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         roomNo = "R04"
         noOfPax = 4
         status = false
-        myRef = database.getReference("Room").child("Room4")
+        myRef = database2.getReference("Room").child("Room4")
         val room4 = Room()
         room4.roomNo = roomNo
         room4.noOfPax = noOfPax
@@ -78,7 +93,6 @@ class MainActivity : AppCompatActivity() {
         myRef.setValue(room4);
 
         //reseting the data in PL-03-Control
-
         var lcdscr = ""
         var lcdtxt = ""
         var lcdbkR = ""
