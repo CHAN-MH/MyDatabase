@@ -107,7 +107,6 @@ class MainActivity : AppCompatActivity() {
         lcdRef.child("selection").setValue(selection)
         myRef.child("selection").setValue(selection)
 
-/*
         //reseting the data in personal database
         comRef.child("lcdscr").setValue(lcdscr)
         comRef.child("lcdtxt").setValue(lcdtxt)
@@ -115,6 +114,5 @@ class MainActivity : AppCompatActivity() {
         comRef.child("lcdbkG").setValue(lcdbkG)
         comRef.child("lcdbkB").setValue(lcdbkB)
 
- */
     }
 }
