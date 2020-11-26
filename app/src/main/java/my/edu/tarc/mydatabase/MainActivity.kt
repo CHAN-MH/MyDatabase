@@ -114,5 +114,9 @@ class MainActivity : AppCompatActivity() {
         comRef.child("lcdbkG").setValue(lcdbkG)
         comRef.child("lcdbkB").setValue(lcdbkB)
 
+        //initialise common resource relay value
+        lcdRef.child("relay1").setValue("0")
+        lcdRef.child("relay2").setValue("0")
+
     }
 }
